@@ -1,0 +1,7 @@
+{
+  "name": "stépru, le prof de comm",
+  "description": "Une plateforme éducative tout-en-un pour les étudiant(e)s en communication et relations publiques, comprenant la sélection de cours, des résumés de cours, des podcasts intégrés et un assistant académique propulsé par l'IA.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}
