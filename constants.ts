@@ -1,7 +1,7 @@
 
 import { Course, Resource, Flashcard, EvernoteNote } from './types';
 
-export const APP_VERSION = '2.9';
+export const APP_VERSION = '2.9.1';
 
 export const COURSES: Course[] = [
   { id: '1', name: 'Relations médias et influenceurs', code: 'COMM-101', description: 'Gérer l\'image de marque et optimiser les collaborations stratégiques.', color: 'bg-indigo-600' },
