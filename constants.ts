@@ -34,4 +34,3 @@ export const SPOTIFY_SHOW_ID = '4C0DeBIvVZjRbM6MUOylOT';
 export const CHATGPT_GPT_URL = 'https://chatgpt.com/g/g-ZltU00p7B-stepru-the-comms-professor';
 
 export const ACCESS_CODE = 'comm2026';
-
