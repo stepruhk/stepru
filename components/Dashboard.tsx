@@ -1,7 +1,8 @@
 
 import React from 'react';
 import { Course, Resource } from '../types';
-import { Sparkles, ArrowRight, Play, BookOpen, Clock, CheckCircle } from 'lucide-react';
+import { APP_VERSION } from '../constants';
+import { Sparkles, ArrowRight, Play, BookOpen, Clock, CheckCircle, ShieldCheck, RefreshCw } from 'lucide-react';
 
 interface DashboardProps {
   course: Course;
@@ -14,12 +15,20 @@ const Dashboard: React.FC<DashboardProps> = ({ course, resources, setActiveTab }
 
   return (
     <div className="space-y-8 animate-in fade-in duration-700">
-      <header className="py-10 px-8 bg-white rounded-3xl border border-slate-100 shadow-sm relative overflow-hidden">
-        <div className="absolute top-4 right-4 flex items-center gap-2 px-3 py-1 bg-orange-50 text-orange-600 rounded-full border border-orange-100">
-          <CheckCircle size={12} />
-          <span className="text-[10px] font-black uppercase tracking-tighter">Code v2.5 Actif</span>
+      <div className="flex items-center justify-between px-2">
+        <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-cyan-500 bg-cyan-50 px-3 py-1 rounded-full border border-cyan-100">
+          <ShieldCheck size={12} />
+          Système v{APP_VERSION} : Synchronisé
         </div>
-        
+        <button 
+          onClick={() => window.location.reload()}
+          className="text-[10px] font-bold text-slate-400 hover:text-indigo-600 flex items-center gap-1 transition-colors"
+        >
+          <RefreshCw size={10} /> Forcer la synchro
+        </button>
+      </div>
+
+      <header className="py-10 px-8 bg-white rounded-3xl border border-slate-100 shadow-sm relative overflow-hidden">
         <div className="flex items-center gap-2 mb-2">
           <span className="text-slate-400 text-[10px] font-bold uppercase tracking-widest">{course.code}</span>
         </div>
@@ -31,7 +40,7 @@ const Dashboard: React.FC<DashboardProps> = ({ course, resources, setActiveTab }
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         <div className="md:col-span-2">
-          <section className="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm">
+          <section className="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm h-full">
             <div className="flex items-center justify-between mb-6">
               <h3 className="text-xl font-bold text-slate-800 flex items-center gap-3">
                 <BookOpen className="text-indigo-600" size={20} />
@@ -77,13 +86,13 @@ const Dashboard: React.FC<DashboardProps> = ({ course, resources, setActiveTab }
             </button>
           </div>
 
-          <div className="bg-orange-50 p-6 rounded-3xl border border-orange-100">
-             <div className="flex items-center gap-2 mb-2 text-orange-700">
+          <div className="bg-cyan-50 p-6 rounded-3xl border border-cyan-100">
+             <div className="flex items-center gap-2 mb-2 text-cyan-700">
                 <Sparkles size={16} />
-                <h3 className="text-sm font-bold uppercase tracking-tight">IA LABS (Beta)</h3>
+                <h3 className="text-sm font-bold uppercase tracking-tight">IA LABS (Alpha)</h3>
              </div>
-             <p className="text-orange-900/70 text-[11px] leading-relaxed">
-               De nouveaux outils expérimentaux sont disponibles dans la barre latérale. Testez le Lab Texte pour une IA ultra-intelligente !
+             <p className="text-cyan-900/70 text-[11px] leading-relaxed">
+               Les outils de pointe (Texte, Image et Live Audio) sont prêts dans votre menu latéral.
              </p>
           </div>
         </div>
@@ -93,3 +102,4 @@ const Dashboard: React.FC<DashboardProps> = ({ course, resources, setActiveTab }
 };
 
 export default Dashboard;
+
