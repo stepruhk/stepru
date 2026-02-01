@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Course, Resource } from '../types';
 import { APP_VERSION } from '../constants';
@@ -102,4 +101,5 @@ const Dashboard: React.FC<DashboardProps> = ({ course, resources, setActiveTab }
 };
 
 export default Dashboard;
+
 
