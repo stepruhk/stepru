@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Course, Resource } from '../types';
-import { CHATGPT_GPT_URL } from '../constants';
+import { Sparkles, ArrowRight, Play, BookOpen, Clock, CheckCircle } from 'lucide-react';
 
 interface DashboardProps {
   course: Course;
@@ -12,99 +12,79 @@ interface DashboardProps {
 const Dashboard: React.FC<DashboardProps> = ({ course, resources, setActiveTab }) => {
   const recentResources = resources.slice(-3).reverse();
 
-  const getResourceIcon = (type: string) => {
-    switch (type) {
-      case 'written': return 'fa-file-lines';
-      case 'ppt': return 'fa-file-powerpoint';
-      case 'media': return 'fa-photo-film';
-      case 'link': return 'fa-link';
-      case 'other': return 'fa-box-archive';
-      default: return 'fa-file';
-    }
-  };
-
   return (
-    <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
-      <header className="flex flex-col md:flex-row md:items-end justify-between gap-4">
-        <div>
-          <h1 className="text-4xl font-black text-slate-900">{course.name}</h1>
-          <p className="text-slate-500 text-lg mt-1">Prêt pour la session d'aujourd'hui ?</p>
+    <div className="space-y-8 animate-in fade-in duration-700">
+      <header className="py-10 px-8 bg-white rounded-3xl border border-slate-100 shadow-sm relative overflow-hidden">
+        <div className="absolute top-4 right-4 flex items-center gap-2 px-3 py-1 bg-orange-50 text-orange-600 rounded-full border border-orange-100">
+          <CheckCircle size={12} />
+          <span className="text-[10px] font-black uppercase tracking-tighter">Code v2.5 Actif</span>
         </div>
-        <div className="bg-white px-6 py-3 rounded-2xl shadow-sm border border-slate-100 flex items-center gap-4">
-          <div className="text-right">
-            <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">Ressources</p>
-            <p className="text-xl font-bold text-slate-900">{resources.length}</p>
-          </div>
-          <div className="h-10 w-[1px] bg-slate-100"></div>
-          <div className="text-right">
-            <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">Progression</p>
-            <p className="text-xl font-bold text-slate-900">12%</p>
-          </div>
+        
+        <div className="flex items-center gap-2 mb-2">
+          <span className="text-slate-400 text-[10px] font-bold uppercase tracking-widest">{course.code}</span>
         </div>
+        <h1 className="text-4xl font-black text-slate-900 mb-4">{course.name}</h1>
+        <p className="text-slate-500 font-medium leading-relaxed max-w-2xl">
+          Ravi de vous revoir ! Accédez à vos supports de cours et outils de révision ci-dessous.
+        </p>
       </header>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="md:col-span-2 space-y-6">
-          <section className="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm">
-            <h3 className="text-lg font-bold mb-4 flex items-center gap-2">
-              <i className="fa-solid fa-clock-rotate-left text-indigo-500"></i>
-              Documents récents
-            </h3>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="md:col-span-2">
+          <section className="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm">
+            <div className="flex items-center justify-between mb-6">
+              <h3 className="text-xl font-bold text-slate-800 flex items-center gap-3">
+                <BookOpen className="text-indigo-600" size={20} />
+                Derniers documents
+              </h3>
+              <button onClick={() => setActiveTab('resources')} className="text-xs font-bold text-indigo-600 hover:underline">Voir tout</button>
+            </div>
+
             {recentResources.length > 0 ? (
               <div className="space-y-3">
                 {recentResources.map((res) => (
-                  <div key={res.id} className="flex items-center justify-between p-4 rounded-xl bg-slate-50 border border-slate-100 hover:border-indigo-200 transition-colors cursor-pointer group">
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center">
-                        <i className={`fa-solid ${getResourceIcon(res.type)}`}></i>
+                  <div key={res.id} onClick={() => setActiveTab('resources')} className="group flex items-center justify-between p-4 rounded-2xl bg-slate-50 hover:bg-white border border-transparent hover:border-indigo-100 transition-all cursor-pointer">
+                    <div className="flex items-center gap-4">
+                      <div className="w-10 h-10 rounded-xl bg-white text-indigo-600 flex items-center justify-center border border-slate-100 group-hover:scale-105 transition-transform">
+                        <i className={`fa-solid fa-file-lines`}></i>
                       </div>
                       <div>
                         <p className="text-sm font-bold text-slate-800">{res.title}</p>
-                        <p className="text-xs text-slate-500">{new Date(res.dateAdded).toLocaleDateString('fr-FR')}</p>
+                        <p className="text-[10px] text-slate-400 font-bold uppercase">{new Date(res.dateAdded).toLocaleDateString()}</p>
                       </div>
                     </div>
-                    <i className="fa-solid fa-chevron-right text-slate-300 group-hover:text-indigo-400 transition-colors"></i>
+                    <ArrowRight className="text-slate-300 group-hover:text-indigo-600" size={16} />
                   </div>
                 ))}
               </div>
             ) : (
               <div className="text-center py-10 bg-slate-50 rounded-2xl border-2 border-dashed border-slate-200">
-                <i className="fa-solid fa-folder-open text-3xl text-slate-300 mb-2"></i>
-                <p className="text-slate-500 text-sm">Aucun document ajouté pour le moment.</p>
-                <button onClick={() => setActiveTab('resources')} className="text-indigo-600 text-sm font-bold mt-2">Ajouter du contenu</button>
+                <p className="text-slate-400 text-sm italic">Aucun document disponible.</p>
               </div>
             )}
           </section>
         </div>
 
         <div className="space-y-6">
-          <div className="bg-gradient-to-br from-indigo-600 to-indigo-800 p-6 rounded-3xl text-white shadow-xl relative overflow-hidden group">
-            <div className="absolute top-0 right-0 p-8 transform group-hover:scale-110 transition-transform">
-                <i className="fa-solid fa-podcast text-6xl opacity-20"></i>
-            </div>
-            <h3 className="text-lg font-bold mb-2">Flux Podcast</h3>
-            <p className="text-indigo-100 text-sm mb-6">Écoutez les dernières analyses du Prof de Com.</p>
+          <div className="bg-slate-900 p-8 rounded-3xl text-white shadow-xl">
+            <h3 className="text-lg font-bold mb-2">Assistant IA</h3>
+            <p className="text-slate-400 text-xs mb-6">Besoin d'aide pour comprendre un concept ?</p>
             <button 
-              onClick={() => setActiveTab('podcast')}
-              className="bg-white/20 hover:bg-white/30 backdrop-blur-md px-4 py-2 rounded-xl text-sm font-bold transition-colors w-full text-center"
+              onClick={() => setActiveTab('ai-agent')}
+              className="w-full py-3 bg-white text-slate-900 rounded-xl font-bold text-xs flex items-center justify-center gap-2 hover:bg-indigo-50 transition-all"
             >
-              Ouvrir le lecteur
+              <Play size={12} fill="currentColor" /> LANCER L'AIDE
             </button>
           </div>
 
-          <div className="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm">
-            <h3 className="text-lg font-bold mb-4">Chat Rapide</h3>
-            <div className="bg-slate-50 p-4 rounded-2xl mb-4 text-sm text-slate-600 italic">
-              "Besoin d'aide pour une analyse ou une stratégie ? L'assistant de Stepru sur ChatGPT est là pour vous."
-            </div>
-            <a 
-              href={CHATGPT_GPT_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full py-3 bg-slate-900 text-white rounded-2xl font-bold text-sm hover:bg-indigo-600 transition-all flex items-center justify-center gap-2"
-            >
-              <i className="fa-solid fa-up-right-from-square"></i> Demander au Prof (GPT)
-            </a>
+          <div className="bg-orange-50 p-6 rounded-3xl border border-orange-100">
+             <div className="flex items-center gap-2 mb-2 text-orange-700">
+                <Sparkles size={16} />
+                <h3 className="text-sm font-bold uppercase tracking-tight">IA LABS (Beta)</h3>
+             </div>
+             <p className="text-orange-900/70 text-[11px] leading-relaxed">
+               De nouveaux outils expérimentaux sont disponibles dans la barre latérale. Testez le Lab Texte pour une IA ultra-intelligente !
+             </p>
           </div>
         </div>
       </div>
