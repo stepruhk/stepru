@@ -1,6 +1,8 @@
 
 import { Course, Resource, Flashcard, EvernoteNote } from './types';
 
+export const APP_VERSION = '2.8';
+
 export const COURSES: Course[] = [
   { id: '1', name: 'Relations médias et influenceurs', code: 'COMM-101', description: 'Gérer l\'image de marque et optimiser les collaborations stratégiques.', color: 'bg-indigo-600' },
   { id: '2', name: 'Introduction à la comm strat', code: 'COMM-202', description: 'Les fondements et les leviers de la communication stratégique moderne.', color: 'bg-emerald-600' },
@@ -8,9 +10,6 @@ export const COURSES: Course[] = [
   { id: '4', name: 'Ingénierie de la crédibilité Ⓡ', code: 'COMM-410', description: 'Méthodologies avancées pour bâtir et protéger la crédibilité corporative et la réputation.', color: 'bg-amber-600' },
   { id: '5', name: 'Relations de presse', code: 'COMM-501', description: 'Techniques fondamentales pour établir et maintenir des relations durables avec les médias d\'information.', color: 'bg-cyan-600' }
 ];
-
-// --- DONNÉES MAÎTRE (À REMPLIR PAR LE PROFESSEUR) ---
-// Astuce : Utilisez le bouton "Export" dans l'app, puis collez le contenu ici pour "figer" le contenu pour les étudiants.
 
 export const INITIAL_RESOURCES: Resource[] = [];
 
@@ -34,5 +33,5 @@ export const SPOTIFY_SHOW_ID = '4C0DeBIvVZjRbM6MUOylOT';
 
 export const CHATGPT_GPT_URL = 'https://chatgpt.com/g/g-ZltU00p7B-stepru-the-comms-professor';
 
-// Code d'accès unique pour les étudiants
 export const ACCESS_CODE = 'comm2026';
+
