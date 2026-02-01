@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Course } from '../types';
+import { APP_VERSION } from '../constants';
 import { 
   GraduationCap, 
   LayoutDashboard, 
@@ -56,14 +57,14 @@ const Sidebar: React.FC<SidebarProps> = ({
           <div>
             <span className="font-black text-xl tracking-tight block leading-none">Stépru</span>
             <div className="flex items-center gap-1.5 mt-1">
-              <span className="w-1.5 h-1.5 rounded-full bg-orange-500 animate-pulse"></span>
-              <span className="text-[9px] text-orange-400 font-black uppercase tracking-widest">Version 2.5</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse"></span>
+              <span className="text-[9px] text-cyan-400 font-black uppercase tracking-widest">Version {APP_VERSION}</span>
             </div>
           </div>
         </div>
 
         <nav className="space-y-1">
-          <p className="text-[9px] font-black text-slate-600 uppercase tracking-[0.2em] mb-2 px-4">Menu</p>
+          <p className="text-[9px] font-black text-slate-600 uppercase tracking-[0.2em] mb-2 px-4">Menu Principal</p>
           {menuItems.map((item) => {
             const Icon = item.icon;
             return (
@@ -83,8 +84,8 @@ const Sidebar: React.FC<SidebarProps> = ({
           })}
 
           <div className="pt-8 pb-2">
-            <p className="text-[10px] font-black text-indigo-400 uppercase tracking-[0.2em] mb-2 px-4 flex items-center gap-2 animate-pulse">
-              <Sparkles size={12} /> IA LABS (BETA)
+            <p className="text-[10px] font-black text-cyan-400 uppercase tracking-[0.2em] mb-2 px-4 flex items-center gap-2">
+              <Sparkles size={12} className="animate-pulse" /> IA LABS
             </p>
           </div>
           
